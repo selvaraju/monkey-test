@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+ <html lang="en">
+ 
+ <head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="description" content="">
+     <meta name="author" content="">
+     <link rel="icon" href="../../favicon.ico"> 
+     <!-- Bootstrap core CSS -->
+     <link href="static/css/bootstrap.min.css" rel="stylesheet">
+ 
+     <!-- Custom styles for this template -->
+     <link href="static/css/signup.css" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" href="static/css/chaosmonkey.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+     <script>
+ 
+
+     $( "#target" ).click(function() {
+           
+           var hyp = $( "#hyp" ).val()
+           // alert(hyp);
+           jsonObj = [];
+           item = {}
+           item ["hyp"] = hyp;
+           jsonObj.push(item);
+           // alert(jsonObj);
+        // alert(JSON.stringify(jsonObj));
+           console.log(jsonObj);
+        
+        $.ajax({
+            type: 'POST',
+            url: 'http://127.0.0.1:8080/signUpUser',
+            dataType: 'json',
+            data: JSON.stringify(jsonObj),
+            cache: false,
+            contentType : 'application/json',
+            success : function(result){
+                $("#div1").html(result);
+                console.log(result)
+
+            }
+        });
+
+        });
+
+     </script>
+
+
+ </head>
+ 
+ <body background="static/css/monkey.jpg" width="100%">
+ 
+     <div class="container">
+ 
+         <form class="form-signin" method="post" id="form">
+             <h1 class="form-info">HYPERVISOR MONKEY </h1>
+             <b>hypervisor:</b><br>
+             <input type="text" name="clouds[0]controller" id="hyp">
+<!--              <div id="div1"><iframe src="static/pages/hyp.html"></iframe></div>
+ -->             <br>
+             <br>
+             <button type="button" id="target" >button</button>
+
+         </form>
+     </div>
+
+   
+ </body>
+ 
+ </html>
